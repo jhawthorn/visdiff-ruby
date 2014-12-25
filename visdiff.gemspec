@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Visdiff::VERSION
   spec.authors       = ["John Hawthorn"]
   spec.email         = ["john.hawthorn@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Visual diff tool - visdiff.com}
+  spec.description   = %q{Visual diff tool - visdiff.com}
   spec.homepage      = ""
   spec.license       = "MIT"
 
