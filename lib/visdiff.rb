@@ -1,5 +1,6 @@
 require "visdiff/version"
 
-module Visdiff
-  # Your code goes here...
-end
+require 'visdiff/client'
+require 'visdiff/configuration'
+require 'visdiff/image'
+require 'visdiff/revision'
