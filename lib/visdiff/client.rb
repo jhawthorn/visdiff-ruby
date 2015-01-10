@@ -1,9 +1,28 @@
+require 'visdiff/config'
+
 module Visdiff
   class Client
-    def initialize base_url, project
-      @base_url = base_url
-      @project = project
+    attr_reader :config
+
+    def initialize(config=Visdiff.config)
+      @config = config
     end
+
+    def submit_revision revision
+      response = post('revisions', revision.attributes)
+      missing_images = []
+      response['images'].each do |rimg|
+        missing_images << rimg['signature'] unless rimg['url']
+      end
+      puts "Uploading #{missing_images.length} new images (#{response['images'].length} total)"
+
+      images.each do |image|
+        next unless missing_images.include?(image.signature)
+        image.submit!
+      end
+    end
+
+    private
 
     def post path, data
       parse conn.post(path, data)
@@ -13,14 +32,16 @@ module Visdiff
       parse conn.put(path, data)
     end
 
-    private
+    def api_key
+      config.api_key || raise("visdiff api key not configured")
+    end
 
-    def url
-      "#{@base_url}/projects/#{@project}/"
+    def base_url
+      "#{config.base_url}/api"
     end
 
     def conn
-      Faraday.new(:url => url) do |faraday|
+      Faraday.new(:url => base_url) do |faraday|
         faraday.request  :multipart
         faraday.request  :url_encoded
         faraday.response :logger
