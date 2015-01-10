@@ -1,3 +1,5 @@
+require 'faraday'
+
 module Visdiff
   class Config
     attr_accessor :base_url, :api_key
@@ -6,7 +8,7 @@ module Visdiff
     end
 
     attr_writer :connection
-    def conection
+    def connection
       @connection ||= Faraday.new(:url => base_url) do |faraday|
         faraday.request  :multipart
         faraday.request  :url_encoded
