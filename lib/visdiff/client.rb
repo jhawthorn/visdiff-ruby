@@ -25,11 +25,15 @@ module Visdiff
     private
 
     def post path, data
-      parse conn.post(path, data)
+      parse(conn.post(path, request_data(data)))
     end
 
     def put path, data
-      parse conn.put(path, data)
+      parse(conn.put(path, request_data(data)))
+    end
+
+    def request_data data
+      {api_key: api_key}.merge(data)
     end
 
     def api_key
