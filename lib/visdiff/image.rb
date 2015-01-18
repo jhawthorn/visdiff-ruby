@@ -1,8 +1,10 @@
 module Visdiff
   class Image
-    attr_reader :fullpath
+    attr_reader :identifier, :fullpath
+    attr_accessor :client
 
-    def initialize fullpath
+    def initialize identifier, fullpath
+      @identifier = identifier
       @fullpath = fullpath
     end
 
@@ -17,7 +19,11 @@ module Visdiff
     end
 
     def submit!
-      Request.put("images/#{signature}", image: {image: upload_io})
+      @client.submit_image self
+    end
+
+    def attributes
+      {image: {image: upload_io}}
     end
 
     def upload_io

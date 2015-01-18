@@ -8,18 +8,19 @@ module Visdiff
       @config = config
     end
 
-    def submit_revision revision
-      response = post('revisions', revision.attributes)
-      missing_images = []
-      response['images'].each do |rimg|
-        missing_images << rimg['signature'] unless rimg['url']
-      end
-      puts "Uploading #{missing_images.length} new images (#{response['images'].length} total)"
+    def revision identifier, images=[]
+      revision = Revision.new(identifier, images)
+      revision.client = self
+      yield revision if block_given?
+      revision
+    end
 
-      images.each do |image|
-        next unless missing_images.include?(image.signature)
-        image.submit!
-      end
+    def submit_revision revision
+      post('revisions', revision.attributes)
+    end
+
+    def submit_image image
+      put("images/#{image.signature}", image.attributes)
     end
 
     private
