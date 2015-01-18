@@ -23,7 +23,7 @@ module Visdiff
     end
 
     def attributes
-      {image: {image: upload_io}}
+      {image: upload_io}
     end
 
     def upload_io

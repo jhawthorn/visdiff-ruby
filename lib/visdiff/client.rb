@@ -16,11 +16,11 @@ module Visdiff
     end
 
     def submit_revision revision
-      post('revisions', revision.attributes)
+      post('revisions', revision: revision.attributes)
     end
 
     def submit_image image
-      put("images/#{image.signature}", image.attributes)
+      put("images/#{image.signature}", image: image.attributes)
     end
 
     private

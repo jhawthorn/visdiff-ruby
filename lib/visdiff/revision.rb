@@ -31,12 +31,10 @@ module Visdiff
 
     def attributes
       {
-        revision: {
-          identifier: identifier,
-          image_attributes: images.map do |image|
-            {identifier: identifier, signature: image.signature}
-          end
-        }
+        identifier: identifier,
+        image_attributes: images.map do |image|
+          {identifier: identifier, signature: image.signature}
+        end
       }
     end
   end
