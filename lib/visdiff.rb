@@ -12,5 +12,5 @@ module Visdiff
     @config
   end
 
-  config.base_url = "http://www.visdiff.com/"
+  config.base_url = "http://www.visdiff.com/api"
 end
