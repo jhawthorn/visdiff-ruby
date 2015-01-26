@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["john.hawthorn@gmail.com"]
   spec.summary       = %q{Visual diff tool - visdiff.com}
   spec.description   = %q{Visual diff tool - visdiff.com}
-  spec.homepage      = ""
+  spec.homepage      = "http://visdiff.com/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
