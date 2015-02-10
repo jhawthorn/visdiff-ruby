@@ -33,7 +33,7 @@ module Visdiff
       {
         identifier: identifier,
         image_attributes: images.map do |image|
-          {identifier: identifier, signature: image.signature}
+          {identifier: image.identifier, signature: image.signature}
         end
       }
     end
