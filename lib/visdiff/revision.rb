@@ -1,11 +1,12 @@
 module Visdiff
   class Revision
-    attr_reader :identifier, :images
+    attr_reader :identifier, :images, :description
     attr_accessor :client
 
-    def initialize identifier, images=[]
+    def initialize identifier, images=[], description=nil
       @identifier = identifier
       @images = images
+      @description = description
     end
 
     def add_image identifier, filename
@@ -33,7 +34,7 @@ module Visdiff
       {
         identifier: identifier,
         image_attributes: images.map do |image|
-          {identifier: image.identifier, signature: image.signature}
+          {identifier: image.identifier, description: description, signature: image.signature}
         end
       }
     end
