@@ -12,7 +12,6 @@ module Visdiff
       @connection ||= Faraday.new(:url => base_url) do |faraday|
         faraday.request  :multipart
         faraday.request  :url_encoded
-        faraday.response :logger
         faraday.adapter  Faraday.default_adapter
       end
     end
