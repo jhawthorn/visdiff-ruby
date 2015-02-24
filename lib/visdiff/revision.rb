@@ -1,12 +1,13 @@
 module Visdiff
   class Revision
-    attr_reader :identifier, :images, :description
+    attr_reader :identifier, :images, :description, :url, :id
     attr_accessor :client
 
     def initialize identifier, images=[], description=nil
       @identifier = identifier
       @images = images
       @description = description
+      @url = @id = nil
     end
 
     def add_image identifier, filename
@@ -17,6 +18,8 @@ module Visdiff
 
     def submit!
       response = client.submit_revision(self)
+      @id = response['id']
+      @url = response['url']
 
       missing_images = []
       response['images'].each do |rimg|
@@ -28,6 +31,8 @@ module Visdiff
         next unless missing_images.include?(image.signature)
         client.submit_image(image)
       end
+
+      puts @url
     end
 
     def attributes
