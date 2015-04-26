@@ -13,17 +13,6 @@ class Visdiff::TestRun
     visdiff = Visdiff::Client.new
     @revision = visdiff.revision
     @enabled = false
-
-    submit_proc = lambda do
-      submit!
-    end
-
-    if Minitest.respond_to?(:after_run)
-      Minitest.after_run(&submit_proc)
-    else
-      # old, issues a warning on new versions of minitest
-      MiniTest::Unit.after_tests(&submit_proc)
-    end
   end
 
   def submit!
