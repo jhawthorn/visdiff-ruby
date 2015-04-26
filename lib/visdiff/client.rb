@@ -5,7 +5,7 @@ module Visdiff
     attr_reader :config
 
     def initialize(config=Visdiff.config)
-      @config = config
+      @config = config.dup
     end
 
     def revision(identifier=nil, images=[], description=nil)
