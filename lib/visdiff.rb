@@ -5,6 +5,8 @@ require 'visdiff/config'
 require 'visdiff/image'
 require 'visdiff/revision'
 
+require 'visdiff/test_run'
+
 module Visdiff
   def self.config
     @config ||= Config.new
