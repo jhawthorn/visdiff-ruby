@@ -1,9 +1,10 @@
 module Visdiff
   class Revision
-    attr_reader :identifier, :images, :description, :url, :id
+    attr_reader :images, :url, :id
+    attr_accessor :identifier, :description
     attr_accessor :client
 
-    def initialize identifier, images=[], description=nil
+    def initialize(identifier=nil, images=[], description=nil)
       @identifier = identifier
       @images = images
       @description = description

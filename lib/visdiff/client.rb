@@ -8,7 +8,7 @@ module Visdiff
       @config = config
     end
 
-    def revision identifier, images=[], description=nil
+    def revision(identifier=nil, images=[], description=nil)
       revision = Revision.new(identifier, images, description)
       revision.client = self
       yield revision if block_given?
