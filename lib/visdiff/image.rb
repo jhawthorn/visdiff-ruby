@@ -15,7 +15,7 @@ module Visdiff
     def signature
       @signature ||= IO.popen(["identify", "-format", "%#", '--', fullpath]) do |f|
         f.read
-      end
+      end.strip
     end
 
     def submit!
